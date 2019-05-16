@@ -20,6 +20,9 @@ class Dropdown {
     
     // Toggle the ".dropdown-hidden" class off and on
     this.content.classList.toggle('dropdown-hidden');
+    this.content.classList.contains('dropdown-hidden')
+      ? TweenMax.to(this.content, 2, {y:-250, opacity:0.7, display:'none'})
+      : TweenMax.to(this.content, 2, {y:-10, display:'flex'}) 
   }
 }
 
