@@ -67,5 +67,15 @@ class TabLink {
   
   */
   
-  const links = document.querySelectorAll('.tabs-link');
-  links.forEach(link=> new TabLink(link))
+//   const links = document.querySelectorAll('.tabs-link');
+//   links.forEach(link=> new TabLink(link))
+
+        class Tabs {
+            constructor(link) {
+                this.link = link;
+                this.link.forEach(element=> new TabLink(element))
+            }
+        }
+
+        const links = document.querySelectorAll('.tabs-link');
+        new Tabs(links)

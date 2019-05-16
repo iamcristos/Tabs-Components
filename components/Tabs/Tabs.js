@@ -1,24 +1,19 @@
-class Link {
+class Link{
   constructor(element){
-    this.element = element
-    console.log(this.element);
-    // this.data = this.element.dataset.tab
     this.data;
     this.itemElement;
-    
-    
-    this.element.addEventListener('click', (e) =>this.clickLink(e))
+    this.select(element)
   }
 
-  clickLink (e) {
-    this.selectedLink()
-    e.target.classList.add('tabs-link-selected');
-    this.data= e.target.dataset.tab;
+  select (e) {
+    this.deselect()
+    e.classList.add('tabs-link-selected');
+    this.data= e.dataset.tab;
     this.itemElement = document.querySelector(`.tabs-item[data-tab='${this.data}']`);
     this.itemElement.classList.add('tabs-item-selected')
   }
 
-  selectedLink () {
+  deselect () {
     const items = document.querySelectorAll('.tabs-link')
     items.forEach(item=>item.classList.remove('tabs-link-selected'));
     const tabLink = document.querySelectorAll('.tabs-item');
@@ -26,5 +21,12 @@ class Link {
   }
 }
 
+class Tabs {
+  constructor(link) {
+      this.link = link;
+      this.link.addEventListener('click', (e)=> new Link(e.target))
+  }
+}
+
 const links = document.querySelectorAll('.tabs-link');
-links.forEach(link=> new Link(link));
+links.forEach(link => new Tabs(link))
